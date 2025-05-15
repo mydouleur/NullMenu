@@ -26,8 +26,8 @@ namespace NullMenu
             int minSegments = 4;
 
             bool drawRing = true;
-            bool drawRingLines = false;
-            bool drawCircleLines = false;
+            bool drawRingLines = true;
+            bool drawCircleLines = true;
 
             SetTargetFPS(60);
             //--------------------------------------------------------------------------------------
