@@ -12,8 +12,8 @@ namespace NullMenu
             //--------------------------------------------------------------------------------------
             const int screenWidth = 800;
             const int screenHeight = 450;
-
-             InitWindow(screenWidth, screenHeight, "raylib [shapes] example - draw ring");
+            SetConfigFlags(ConfigFlags.TransparentWindow |ConfigFlags.UndecoratedWindow);
+            InitWindow(screenWidth, screenHeight, "raylib [shapes] example - draw ring");
 
             Vector2 center = new((GetScreenWidth() - 300) / 2, GetScreenHeight() / 2);
 
@@ -43,7 +43,7 @@ namespace NullMenu
                 // Draw
                 //----------------------------------------------------------------------------------
                 BeginDrawing();
-                ClearBackground(Color.RayWhite);
+                ClearBackground(new Color(0,0,0,0));
 
                 DrawLine(500, 0, 500, GetScreenHeight(), ColorAlpha(Color.LightGray, 0.6f));
                 DrawRectangle(500, 0, GetScreenWidth() - 500, GetScreenHeight(), ColorAlpha(Color.LightGray, 0.3f));
