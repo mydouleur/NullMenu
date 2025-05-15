@@ -1,4 +1,5 @@
-﻿using Raylib_cs;
+﻿using NullMenu.Controls;
+using Raylib_cs;
 using System.Numerics;
 using static Raylib_cs.Raylib;
 
@@ -6,6 +7,7 @@ namespace NullMenu
 {
     internal class Program
     {
+        static View view;
         public static int Main()
         {
             // Initialization
@@ -24,14 +26,14 @@ namespace NullMenu
             int endAngle = 360;
             int segments = 0;
             int minSegments = 4;
-
             bool drawRing = true;
             bool drawRingLines = true;
             bool drawCircleLines = true;
 
             SetTargetFPS(60);
             //--------------------------------------------------------------------------------------
-
+            view = View.Init();
+            view.Children.Add(new NullTag());
             // Main game loop
             while (!WindowShouldClose())
             {
@@ -44,45 +46,45 @@ namespace NullMenu
                 //----------------------------------------------------------------------------------
                 BeginDrawing();
                 ClearBackground(new Color(0,0,0,0));
+                view.Render();
+                //DrawLine(500, 0, 500, GetScreenHeight(), ColorAlpha(Color.LightGray, 0.6f));
+                //DrawRectangle(500, 0, GetScreenWidth() - 500, GetScreenHeight(), ColorAlpha(Color.LightGray, 0.3f));
 
-                DrawLine(500, 0, 500, GetScreenHeight(), ColorAlpha(Color.LightGray, 0.6f));
-                DrawRectangle(500, 0, GetScreenWidth() - 500, GetScreenHeight(), ColorAlpha(Color.LightGray, 0.3f));
-
-                if (drawRing)
-                {
-                    DrawRing(
-                        center,
-                        innerRadius,
-                        outerRadius,
-                        startAngle,
-                        endAngle,
-                        segments,
-                        ColorAlpha(Color.Maroon, 0.3f)
-                    );
-                }
-                if (drawRingLines)
-                {
-                    DrawRingLines(
-                        center,
-                        innerRadius,
-                        outerRadius,
-                        startAngle,
-                        endAngle,
-                        segments,
-                        ColorAlpha(Color.Black, 0.4f)
-                    );
-                }
-                if (drawCircleLines)
-                {
-                    DrawCircleSectorLines(
-                        center,
-                        outerRadius,
-                        startAngle,
-                        endAngle,
-                        segments,
-                        ColorAlpha(Color.Black, 0.4f)
-                    );
-                }
+                //if (drawRing)
+                //{
+                //    DrawRing(
+                //        center,
+                //        innerRadius,
+                //        outerRadius,
+                //        startAngle,
+                //        endAngle,
+                //        segments,
+                //        ColorAlpha(Color.Maroon, 0.3f)
+                //    );
+                //}
+                //if (drawRingLines)
+                //{
+                //    DrawRingLines(
+                //        center,
+                //        innerRadius,
+                //        outerRadius,
+                //        startAngle,
+                //        endAngle,
+                //        segments,
+                //        ColorAlpha(Color.Black, 0.4f)
+                //    );
+                //}
+                //if (drawCircleLines)
+                //{
+                //    DrawCircleSectorLines(
+                //        center,
+                //        outerRadius,
+                //        startAngle,
+                //        endAngle,
+                //        segments,
+                //        ColorAlpha(Color.Black, 0.4f)
+                //    );
+                //}
 
                 // Draw GUI controls
                 //------------------------------------------------------------------------------
@@ -99,11 +101,11 @@ namespace NullMenu
                 drawCircleLines = GuiCheckBox(new Rectangle( 600, 380, 20, 20 ), "Draw CircleLines", drawCircleLines);*/
                 //------------------------------------------------------------------------------
 
-                minSegments = (int)MathF.Ceiling((endAngle - startAngle) / 90);
-                Color color = (segments >= minSegments) ? Color.Maroon : Color.DarkGray;
-                DrawText($"MODE: {((segments >= minSegments) ? "MANUAL" : "AUTO")}", 600, 270, 10, color);
-
-                DrawFPS(10, 10);
+                //minSegments = (int)MathF.Ceiling((endAngle - startAngle) / 90);
+                //Color color = (segments >= minSegments) ? Color.Maroon : Color.DarkGray;
+                //DrawText($"MODE: {((segments >= minSegments) ? "MANUAL" : "AUTO")}", 600, 270, 10, color);
+                
+                //DrawFPS(10, 10);
 
                 EndDrawing();
                 //----------------------------------------------------------------------------------
