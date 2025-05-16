@@ -8,7 +8,7 @@ namespace NullMenu
 {
     internal class Program
     {
-        static View view;
+        static View? view;
         public static int Main()
         {
             // Initialization
