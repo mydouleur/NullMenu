@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NullMenu.Event;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,10 +21,29 @@ namespace NullMenu.Controls
                 }
             }
         }
-        public EventHandler MouseMove { get; set; }
-        public EventHandler MouseDown { get; set; }
-        public EventHandler MouseUp { get; set; }
-
+        public EventHandler<MouseEventArgs> MouseMove { get; set; }
+        public EventHandler<MouseButtonEventArgs> MouseDown { get; set; }
+        public EventHandler<MouseButtonEventArgs> MouseUp { get; set; }
+        public static RootControl GetTrigControl(RootControl root)
+        {
+            RootControl tempTrig = null;
+            if (root.IsTriggered())
+            {
+                tempTrig = root;
+                if (root.Children != null)
+                {
+                    foreach (var child in root.Children)
+                    {
+                        if (GetTrigControl(child) != null)
+                        {
+                            tempTrig = child;
+                            break;
+                        }
+                    }
+                }
+            }
+            return tempTrig;
+        }
         public abstract bool IsTriggered();
     }
 }

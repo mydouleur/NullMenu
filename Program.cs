@@ -1,4 +1,5 @@
 ﻿using NullMenu.Controls;
+using NullMenu.Utils;
 using Raylib_cs;
 using System.Numerics;
 using static Raylib_cs.Raylib;
@@ -19,7 +20,9 @@ namespace NullMenu
             SetTargetFPS(60);
             //--------------------------------------------------------------------------------------
             view = View.Init();
-            view.Children.Add(new NullTag());
+            var temptag = new NullTag();
+            view.Children.Add(temptag);
+            temptag.MouseDown += temptag.click;
             // Main game loop
             while (!WindowShouldClose())
             {
@@ -27,7 +30,7 @@ namespace NullMenu
                 //----------------------------------------------------------------------------------
                 // NOTE: All variables update happens inside GUI control functions
                 //----------------------------------------------------------------------------------
-
+               MouseTrigger.TrigMouseDown(view);
                 // Draw
                 //----------------------------------------------------------------------------------
                 BeginDrawing();

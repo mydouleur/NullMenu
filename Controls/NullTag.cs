@@ -1,4 +1,6 @@
 ﻿using NullMenu.Enum;
+using NullMenu.Event;
+using NullMenu.Utils;
 using Raylib_cs;
 using System.Numerics;
 namespace NullMenu.Controls
@@ -18,7 +20,14 @@ namespace NullMenu.Controls
         public HorizontalAlign HorizontalAlign { get; set; } = HorizontalAlign.Center;
         public override bool IsTriggered()
         {
-            return true;
+            if (MouseTrigger.MousePos.X > PosX && MouseTrigger.MousePos.X < PosX + Width)
+            {
+                if (MouseTrigger.MousePos.Y > PosY && MouseTrigger.MousePos.Y < PosY + Height)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
         public override void Render()
         {
@@ -26,6 +35,10 @@ namespace NullMenu.Controls
             var texLen = Raylib.MeasureText(Text, FontSize);
             Raylib.DrawTextEx(Font, Text, new Vector2(PosX + (int)(HorizontalAlign) * 0.5f * (Width - texLen), PosY + 0.5f * Height - FontSize * 0.5f), FontSize, Spacing, Foreground);
             base.Render();
+        }
+        public void click(object sender, MouseButtonEventArgs e)
+        {
+
         }
     }
 }
