@@ -11,7 +11,7 @@ namespace NullMenu.Controls
         public float PosY { get; set; } = 100;
         public float Width { get; set; } = 100;
         public float Height { get; set; } = 50;
-        public string Text { get; set; } = "BDDDDDS";
+        public string Text { get; set; } = "0";
         public int FontSize { get; set; } = 20;
         public float Spacing { get; set; } = 2;
         public Color Background { get; set; } = Color.Blue;
@@ -38,7 +38,7 @@ namespace NullMenu.Controls
         }
         public void click(object sender, MouseButtonEventArgs e)
         {
-
+            this.Text = (Convert.ToInt32(Text) + 1+"");
         }
     }
 }

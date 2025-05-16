@@ -15,7 +15,7 @@ namespace NullMenu
             //--------------------------------------------------------------------------------------
             const int screenWidth = 800;
             const int screenHeight = 450;
-            SetConfigFlags(ConfigFlags.TransparentWindow |ConfigFlags.UndecoratedWindow);
+            SetConfigFlags(ConfigFlags.TransparentWindow | ConfigFlags.UndecoratedWindow);
             InitWindow(screenWidth, screenHeight, "NullMenu");
             SetTargetFPS(60);
             //--------------------------------------------------------------------------------------
@@ -30,13 +30,14 @@ namespace NullMenu
                 //----------------------------------------------------------------------------------
                 // NOTE: All variables update happens inside GUI control functions
                 //----------------------------------------------------------------------------------
-               MouseTrigger.TrigMouseDown(view);
+                Thread.Sleep(10);
+                MouseTrigger.TrigMouseDown(view);
                 // Draw
                 //----------------------------------------------------------------------------------
-                BeginDrawing();
-                ClearBackground(new Color(0,0,0,0));
-                view.Render();
-                EndDrawing();
+                    BeginDrawing();
+                    ClearBackground(new Color(0, 0, 0, 0));
+                    view.Render();
+                    EndDrawing();
                 //----------------------------------------------------------------------------------
             }
             CloseWindow();

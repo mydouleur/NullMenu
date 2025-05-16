@@ -13,7 +13,8 @@ namespace NullMenu.Utils
     public static class MouseTrigger
     {
         public static Vector2 MousePos { get; set; } = new Vector2();
-        public static bool TrigMouseDown(View view)
+
+        public static void TrigMouseDown(View view)
         {
             MousePos = Raylib.GetMousePosition();
             for (int i = 0; i <= 6; i++)
@@ -27,7 +28,6 @@ namespace NullMenu.Utils
                     }
                 }
             }
-            return false;
         }
     }
 }
