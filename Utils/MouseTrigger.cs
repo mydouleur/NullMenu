@@ -19,7 +19,7 @@ namespace NullMenu.Utils
             MousePos = Raylib.GetMousePosition();
             for (int i = 0; i <= 6; i++)
             {
-                if (Raylib.IsMouseButtonDown((MouseButton)i))
+                if (Raylib.IsMouseButtonPressed((MouseButton)i))
                 {
                     var control = RootControl.GetTrigControl(view);
                     if (control.MouseDown != null)
