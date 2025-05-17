@@ -10,7 +10,7 @@ namespace NullMenu.Controls
 {
     public class View : RootControl
     {
-        public static View Init()
+        public static View Initial()
         {
             return new View() { Parent=null,Children=new()};
         }

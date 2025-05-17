@@ -1,4 +1,5 @@
 ﻿using NullMenu.Controls;
+using NullMenu.CustomShader;
 using NullMenu.Utils;
 using Raylib_cs;
 using System.Numerics;
@@ -18,11 +19,12 @@ namespace NullMenu
             SetConfigFlags(ConfigFlags.TransparentWindow | ConfigFlags.UndecoratedWindow);
             InitWindow(screenWidth, screenHeight, "NullMenu");
             SetTargetFPS(60);
+            ShaderManager.Initial();
             //--------------------------------------------------------------------------------------
-            view = View.Init();
+            view = View.Initial();
             var temptag = new NullTag();
             view.Children.Add(temptag);
-            temptag.MouseDown += temptag.click;
+            temptag.MouseUp += temptag.click;
             // Main game loop
             while (!WindowShouldClose())
             {
@@ -32,6 +34,7 @@ namespace NullMenu
                 //----------------------------------------------------------------------------------
                 Thread.Sleep(10);
                 MouseTrigger.TrigMouseDown(view);
+                MouseTrigger.TrigMouseUp(view);
                 // Draw
                 //----------------------------------------------------------------------------------
                     BeginDrawing();

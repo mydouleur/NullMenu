@@ -29,5 +29,20 @@ namespace NullMenu.Utils
                 }
             }
         }
+        public static void TrigMouseUp(View view)
+        {
+            MousePos = Raylib.GetMousePosition();
+            for (int i = 0; i <= 6; i++)
+            {
+                if (Raylib.IsMouseButtonReleased((MouseButton)i))
+                {
+                    var control = RootControl.GetTrigControl(view);
+                    if (control.MouseUp != null)
+                    {
+                        control.MouseUp.Invoke(control, new MouseButtonEventArgs((MouseButton)i, MousePos, Raylib.GetMouseDelta()));
+                    }
+                }
+            }
+        }
     }
 }
